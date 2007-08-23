@@ -15,8 +15,8 @@ License   	: Artistic style
 URL         	: http://www.oasis-open.org/docbook/
 
 Provides        : docbook-dtd-%{mltyp}
-Requires(post)  : fileutils
-Requires(postun): fileutils
+Requires(post)  : coreutils
+Requires(postun): coreutils
 Requires(post)	: sgml-common >= 0.6.3-2mdk
 Requires(postun): sgml-common >= 0.6.3-2mdk
 Requires(post)  : libxml2-utils
