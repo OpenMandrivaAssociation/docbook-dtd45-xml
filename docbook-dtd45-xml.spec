@@ -22,7 +22,6 @@ Requires(postun): sgml-common >= 0.6.3-2mdk
 Requires(post)  : libxml2-utils
 Requires(postun): libxml2-utils
 
-BuildRoot   	: %{_tmppath}/%{name}-%{version}-buildroot
 
 # Zip file downloadable at http://www.oasis-open.org/docbook/%{mltyp}/%{dtdver}
 Source0		: docbook-xml-%{dtdver}.tar.bz2 
