@@ -45,22 +45,22 @@ This is the version %{dtdver} of this DTD.
 
 
 %Install
-rm -Rf $RPM_BUILD_ROOT
-DESTDIR=$RPM_BUILD_ROOT%{sgmlbase}/docbook/%{mltyp}-dtd-%{dtdver}
+rm -Rf %{buildroot}
+DESTDIR=%{buildroot}%{sgmlbase}/docbook/%{mltyp}-dtd-%{dtdver}
 mkdir -p $DESTDIR
 cp -r ent/ $DESTDIR
 install -m644 docbook.cat $DESTDIR/catalog
 install -m644 catalog.xml $DESTDIR
 install -m644 *.dtd $DESTDIR
 install -m644 *.mod $DESTDIR
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/sgml
-touch $RPM_BUILD_ROOT%{_sysconfdir}/sgml/%{mltyp}-docbook-%{dtdver}.cat
+mkdir -p %{buildroot}%{_sysconfdir}/sgml
+touch %{buildroot}%{_sysconfdir}/sgml/%{mltyp}-docbook-%{dtdver}.cat
 # looks unnecesary
-# touch $RPM_BUILD_ROOT%{_sysconfdir}/sgml/catalog
+# touch %{buildroot}%{_sysconfdir}/sgml/catalog
 
 
 %clean
-rm -Rf $RPM_BUILD_ROOT
+rm -Rf %{buildroot}
 
 
 %Files
