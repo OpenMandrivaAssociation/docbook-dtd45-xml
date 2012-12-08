@@ -1,6 +1,6 @@
 %define name docbook-dtd45-xml
 %define version 1.0
-%define release %mkrel 7
+%define release %mkrel 8
 %define dtdver 4.5
 %define mltyp xml
 
@@ -66,7 +66,6 @@ rm -Rf %{buildroot}
 %Files
 %defattr (-,root,root)
 %doc README ChangeLog
-%dir %{sgmlbase}/docbook/%{mltyp}-dtd-%{dtdver}
 %{sgmlbase}/docbook/%{mltyp}-dtd-%{dtdver}
 %ghost %config(noreplace) %{_sysconfdir}/sgml/%{mltyp}-docbook-%{dtdver}.cat
 # why this?
@@ -166,4 +165,46 @@ if [ "$1" = "0" ]; then
   fi
 fi
 
+
+
+
+%changelog
+* Tue May 03 2011 Oden Eriksson <oeriksson@mandriva.com> 1.0-7mdv2011.0
++ Revision: 663839
+- mass rebuild
+
+* Thu Dec 02 2010 Oden Eriksson <oeriksson@mandriva.com> 1.0-6mdv2011.0
++ Revision: 604806
+- rebuild
+
+* Tue Mar 16 2010 Oden Eriksson <oeriksson@mandriva.com> 1.0-5mdv2010.1
++ Revision: 520691
+- rebuilt for 2010.1
+
+* Sun Aug 09 2009 Oden Eriksson <oeriksson@mandriva.com> 1.0-4mdv2010.0
++ Revision: 413369
+- rebuild
+
+* Wed Jul 02 2008 Oden Eriksson <oeriksson@mandriva.com> 1.0-3mdv2009.0
++ Revision: 230666
+- rebuild
+
+* Fri Dec 21 2007 Olivier Blin <oblin@mandriva.com> 1.0-2mdv2008.1
++ Revision: 136373
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Thu Aug 23 2007 Thierry Vignaud <tv@mandriva.org> 1.0-2mdv2008.0
++ Revision: 70200
+- fileutils, sh-utils & textutils have been obsoleted by coreutils a long time ago
+
+
+* Fri Jan 26 2007 Camille Bégnis <camille@mandriva.com> 1.0-1mdv2007.0
++ Revision: 113786
+- Import docbook-dtd45-xml
+
+* Fri Jan 26 2007 Camille Begnis <camille@mandriva.com> 1.0-1mdv2007.1
+- First package based on 4.45H
 
