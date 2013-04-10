@@ -1,51 +1,34 @@
-%define name docbook-dtd45-xml
-%define version 1.0
-%define release %mkrel 8
-%define dtdver 4.5
-%define mltyp xml
-
-Name: %{name}
-Version: %{version}
-Release: %{release}
-Group       	: Publishing
-
-Summary     	: XML document type definition for DocBook %{dtdver}
-
-License   	: Artistic style
-URL         	: http://www.oasis-open.org/docbook/
-
-Provides        : docbook-dtd-%{mltyp}
-Requires(post)  : coreutils
-Requires(postun): coreutils
-Requires(post)	: sgml-common >= 0.6.3-2mdk
-Requires(postun): sgml-common >= 0.6.3-2mdk
-Requires(post)  : libxml2-utils
-Requires(postun): libxml2-utils
-
-BuildRoot   	: %{_tmppath}/%{name}-%{version}-buildroot
-
-# Zip file downloadable at http://www.oasis-open.org/docbook/%{mltyp}/%{dtdver}
-Source0		: docbook-xml-%{dtdver}.tar.bz2 
-BuildArch	: noarch  
-
-
+%define dtdver	4.5
+%define mltyp	xml
 %define sgmlbase %{_datadir}/sgml
 
-%Description
+Summary:	XML document type definition for DocBook %{dtdver}
+Name:		docbook-dtd45-xml
+Version:	1.0
+Release:	8
+Group:		Publishing
+License:	Artistic style
+Url:		http://www.oasis-open.org/docbook/
+# Zip file downloadable at http://www.oasis-open.org/docbook/%{mltyp}/%{dtdver}
+Source0:	docbook-xml-%{dtdver}.tar.bz2 
+BuildArch:	noarch  
+Provides:	docbook-dtd-%{mltyp}
+Requires(post,postun):	coreutils
+Requires(post,postun):	libxml2-utils
+Requires(post,postun):	sgml-common
+
+%description
 The DocBook Document Type Definition (DTD) describes the syntax of
 technical documentation texts (articles, books and manual pages).
 This syntax is XML-compliant and is developed by the OASIS consortium.
 This is the version %{dtdver} of this DTD.
 
-
-%Prep
+%prep
 %setup -n docbook-xml-%{dtdver} -q 
 
-%Build
+%build
 
-
-%Install
-rm -Rf %{buildroot}
+%install
 DESTDIR=%{buildroot}%{sgmlbase}/docbook/%{mltyp}-dtd-%{dtdver}
 mkdir -p $DESTDIR
 cp -r ent/ $DESTDIR
@@ -58,19 +41,12 @@ touch %{buildroot}%{_sysconfdir}/sgml/%{mltyp}-docbook-%{dtdver}.cat
 # looks unnecesary
 # touch %{buildroot}%{_sysconfdir}/sgml/catalog
 
-
-%clean
-rm -Rf %{buildroot}
-
-
-%Files
-%defattr (-,root,root)
+%files
 %doc README ChangeLog
 %{sgmlbase}/docbook/%{mltyp}-dtd-%{dtdver}
 %ghost %config(noreplace) %{_sysconfdir}/sgml/%{mltyp}-docbook-%{dtdver}.cat
 # why this?
 # %ghost %config(noreplace) %{_sysconfdir}/sgml/catalog
-
 
 %post
 ##
@@ -116,7 +92,7 @@ CATALOG=%{sgmlbase}/docbook/xmlcatalog
 	"http://www.oasis-open.org/docbook/xml/4.3" \
 	"xml-dtd-%{dtdver}" $CATALOG
 
-%Postun
+%postun
 ##
 ## SGML catalog
 ##
@@ -164,47 +140,4 @@ if [ "$1" = "0" ]; then
 	   "xml-dtd-%{dtdver}" $CATALOG
   fi
 fi
-
-
-
-
-%changelog
-* Tue May 03 2011 Oden Eriksson <oeriksson@mandriva.com> 1.0-7mdv2011.0
-+ Revision: 663839
-- mass rebuild
-
-* Thu Dec 02 2010 Oden Eriksson <oeriksson@mandriva.com> 1.0-6mdv2011.0
-+ Revision: 604806
-- rebuild
-
-* Tue Mar 16 2010 Oden Eriksson <oeriksson@mandriva.com> 1.0-5mdv2010.1
-+ Revision: 520691
-- rebuilt for 2010.1
-
-* Sun Aug 09 2009 Oden Eriksson <oeriksson@mandriva.com> 1.0-4mdv2010.0
-+ Revision: 413369
-- rebuild
-
-* Wed Jul 02 2008 Oden Eriksson <oeriksson@mandriva.com> 1.0-3mdv2009.0
-+ Revision: 230666
-- rebuild
-
-* Fri Dec 21 2007 Olivier Blin <oblin@mandriva.com> 1.0-2mdv2008.1
-+ Revision: 136373
-- restore BuildRoot
-
-  + Thierry Vignaud <tv@mandriva.org>
-    - kill re-definition of %%buildroot on Pixel's request
-
-* Thu Aug 23 2007 Thierry Vignaud <tv@mandriva.org> 1.0-2mdv2008.0
-+ Revision: 70200
-- fileutils, sh-utils & textutils have been obsoleted by coreutils a long time ago
-
-
-* Fri Jan 26 2007 Camille Bégnis <camille@mandriva.com> 1.0-1mdv2007.0
-+ Revision: 113786
-- Import docbook-dtd45-xml
-
-* Fri Jan 26 2007 Camille Begnis <camille@mandriva.com> 1.0-1mdv2007.1
-- First package based on 4.45H
 
