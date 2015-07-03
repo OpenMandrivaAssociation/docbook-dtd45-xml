@@ -5,7 +5,7 @@
 Summary:	XML document type definition for DocBook %{dtdver}
 Name:		docbook-dtd45-xml
 Version:	1.0
-Release:	18
+Release:	19
 Group:		Publishing
 License:	Artistic style
 Url:		http://www.oasis-open.org/docbook/
@@ -38,8 +38,6 @@ install -m644 *.dtd $DESTDIR
 install -m644 *.mod $DESTDIR
 mkdir -p %{buildroot}%{_sysconfdir}/sgml
 touch %{buildroot}%{_sysconfdir}/sgml/%{mltyp}-docbook-%{dtdver}.cat
-# looks unnecesary
-# touch %{buildroot}%{_sysconfdir}/sgml/catalog
 
 %files
 %doc README ChangeLog
