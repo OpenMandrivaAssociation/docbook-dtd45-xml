@@ -8,7 +8,7 @@ Version:	4.5
 Release:	2
 Group:		Publishing
 License:	Artistic style
-Url:		http://www.oasis-open.org/docbook/
+Url:		https://www.oasis-open.org/docbook/
 # Zip file downloadable at http://www.oasis-open.org/docbook/%{mltyp}/%{dtdver}
 Source0:	docbook-xml-%{dtdver}.tar.bz2 
 BuildArch:	noarch  
